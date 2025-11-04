@@ -1,0 +1,51 @@
+﻿@model identitySystem.Data.ApplicationUser
+@{
+    ViewBag.Title = "Home";
+}
+
+@section Styles {
+    <style>
+                          body {
+                              background: linear-gradient(120deg,#89f7fe,#66a6ff);
+                          }
+
+                          .profile-card {
+                              max-width: 700px;
+                              margin: 60px auto;
+                              background: #fff;
+                              border-radius: 18px;
+                              box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+                              animation: fadeSlide 0.9s ease;
+                          }
+
+
+                          .avatar-circle {
+                              width: 90px;
+                              height: 90px;
+                              background: linear-gradient(135deg,#007bff,#00c6ff);
+                              border-radius: 50%;
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              color: #fff;
+                              font-size: 36px;
+                              font-weight: 700;
+                          }
+
+                          .greeting-text {
+                              animation: fadeInText 1.5s ease;
+                          }
+                           </style>
+}
+
+<div class="profile-card p-4 p-md-5">
+    <div class="d-flex align-items-center gap-4">
+        <div class="avatar-circle">@Model.FirstName.Substring(0, 1).ToUpper()</div>
+        <div>
+            <h1 class="fw-bold greeting-text">Welcome back, @Model.FirstName @Model.LastName!</h1>
+            <p class="text-muted mb-1">Course: <strong>@Model.Course</strong></p>
+            <p class="text-muted mb-3">Gender: <strong>@Model.Gender</strong></p>
+            <p>Glad to have you on your learning dashboard. Keep up the great work!</p>
+        </div>
+    </div>
+</div>

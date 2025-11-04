@@ -1,0 +1,108 @@
+﻿@model identitySystem.ViewModels.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    var courses = new List<string> { "Java", "TypeScript", "C#", "Angular", "React" };
+}
+
+@section Styles {
+    <style>
+                          body {
+                              background: linear-gradient(120deg, #74ebd5, #9face6);
+                              font-family: 'Segoe UI', sans-serif;
+                          }
+                          .register-card {
+                              max-width: 640px;
+                              margin: 60px auto;
+                              background: #fff;
+                              border-radius: 16px;
+                              box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+                              animation: fadeSlide 0.9s ease;
+                          }
+
+                          .btn-custom {
+                              transition: all .3s ease;
+                          }
+
+                              .btn-custom:hover {
+                                  transform: translateY(-2px);
+                                  box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+                              }
+
+                          label {
+                              font-weight: 500;
+                          }
+    </style>
+    
+
+}
+
+<div class="register-card p-4 p-md-5">
+    <h2 class="fw-bold mb-4 text-center text-primary">Create an Account</h2>
+
+    
+    <form asp-action="Register" method="post" novalidate>
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">First Name</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Last Name</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger small"></span>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Email</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Password</label>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Course</label>
+                <select asp-for="Course" class="form-select">
+                    <option value="">-- Select course --</option>
+                    @foreach (var c in courses)
+                    {
+                        <option value="@c">@c</option>
+                    }
+                </select>
+                <span asp-validation-for="Course" class="text-danger small"></span>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label d-block mb-2">Gender</label>
+                <div class="form-check form-check-inline">
+                    <input asp-for="Gender" class="form-check-input" type="radio" value="Male" id="male" />
+                    <label class="form-check-label" for="male">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input asp-for="Gender" class="form-check-input" type="radio" value="Female" id="female" />
+                    <label class="form-check-label" for="female">Female</label>
+                </div>
+                <span asp-validation-for="Gender" class="text-danger small d-block"></span>
+            </div>
+        </div>
+
+        <div class="mt-4 d-flex justify-content-between align-items-center">
+            <button type="submit" class="btn btn-primary btn-custom px-4">Register</button>
+            <a asp-action="Login" class="text-decoration-none">Already have an account? <strong>Login</strong></a>
+        </div>
+    </form>
+    
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
